@@ -22,8 +22,8 @@ const MovieItem: React.FC<MovieItemProps> = React.memo(({movie}) => {
                 <h2>{movie.title}</h2>
                 <p>Shared by: {movie.shared_by}</p>
                 <p>
-                    {movie.likes} <span role="img" aria-label="likes">👍</span>
-                    {movie.dislikes} <span role="img" aria-label="dislikes">👎</span>
+                    <span role="img" aria-label="likes">{movie.likes} 👍</span>
+                    <span role="img" aria-label="dislikes">{movie.dislikes} 👎</span>
                 </p>
                 <p>Description:</p>
                 <p>{movie.description}</p>

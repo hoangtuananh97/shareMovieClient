@@ -98,7 +98,7 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 <label>Tags:</label>
                 <input type="text" name="tags" value={formData.tags || ''} onChange={handleChange}/>
             </div>
-            <button type="submit">Upload Movie</button>
+            <button type="submit">Share Movie</button>
         </form>
     );
 };

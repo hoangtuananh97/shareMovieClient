@@ -172,6 +172,9 @@
 .user-info button:last-child:hover {
     background-color: #c82333;
 }
+.movie-info{
+    padding: 10px;
+}
 /*======*/
 /* Error */
 .error {
