@@ -49,18 +49,18 @@
 }
 
 /* Form field styling */
-form {
+.modal-overlay form {
     display: flex;
     flex-direction: column;
 }
 
-form div {
+.modal-overlay form div {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
 
-label {
+.modal-overlay label {
     flex: 1;
     margin-right: 10px;
     font-weight: bold;
@@ -93,7 +93,7 @@ textarea {
 }
 
 button[type="submit"] {
-    padding: 10px 20px;
+    padding: 2px 20px;
     background-color: #007BFF;
     color: white;
     border: none;
@@ -107,3 +107,54 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #0056b3;
 }
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="file"],
+.modal-content form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modal-content form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-content form button[type="submit"] {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    align-self: flex-start;
+}
+
+.modal-content form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.modal-content .error {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 5px;
+}
+

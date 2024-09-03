@@ -14,7 +14,7 @@ const MovieItem: React.FC<MovieItemProps> = React.memo(({movie}) => {
     return (
         <div className="movie-item">
             <div className="movie-video">
-                <video controls width="100%" height="315" poster={movie.image_url}>
+                <video controls width="100%" height="100%" poster={movie.image_url}>
                     <source src={movie.video_url} type={getVideoFileExtension(movie.video_url)}/>
                 </video>
             </div>
@@ -25,6 +25,7 @@ const MovieItem: React.FC<MovieItemProps> = React.memo(({movie}) => {
                     {movie.likes} <span role="img" aria-label="likes">👍</span>
                     {movie.dislikes} <span role="img" aria-label="dislikes">👎</span>
                 </p>
+                <p>Description:</p>
                 <p>{movie.description}</p>
             </div>
         </div>

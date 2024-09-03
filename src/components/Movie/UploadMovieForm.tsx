@@ -13,6 +13,7 @@ const UploadMovieForm: React.FC = () => {
         description: null,
         tags: null,
     });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const dispatch = useDispatch();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -21,6 +22,10 @@ const UploadMovieForm: React.FC = () => {
             ...formData,
             [name]: value,
         });
+        // Clear error when user starts typing
+        if (errors[name]) {
+            setErrors({...errors, [name]: ''});
+        }
     };
 
     const handleFileChangeImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,9 +36,9 @@ const UploadMovieForm: React.FC = () => {
                 const response = await uploadNewImageApi(file);
                 setFormData({...formData, image_url: response.data.url});
             } catch (error) {
-                console.error('Error uploading video', error);
+                console.error('Error uploading image', error);
+                setErrors({...errors, image_url: 'Failed to upload image'});
             }
-
         }
     };
 
@@ -46,13 +51,24 @@ const UploadMovieForm: React.FC = () => {
                 setFormData({...formData, video_url: response.data.url});
             } catch (error) {
                 console.error('Error uploading video', error);
+                setErrors({...errors, video_url: 'Failed to upload video'});
             }
         }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(uploadNewMovies(formData));
+        const newErrors: { [key: string]: string } = {};
+
+        if (!formData.video_url) newErrors.video_url = 'Video is required';
+        if (!formData.image_url) newErrors.image_url = 'Image is required';
+        if (!formData.title.trim()) newErrors.title = 'Title is required';
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+        } else {
+            dispatch(uploadNewMovies(formData));
+        }
     };
 
     return (
@@ -60,14 +76,17 @@ const UploadMovieForm: React.FC = () => {
             <div>
                 <label>Video URL:</label>
                 <input type="file" name="video_url" onChange={handleFileChangeVideo} required/>
+                {errors.video_url && <span className="error">{errors.video_url}</span>}
             </div>
             <div>
                 <label>Image URL:</label>
                 <input type="file" name="image_url" onChange={handleFileChangeImage} required/>
+                {errors.image_url && <span className="error">{errors.image_url}</span>}
             </div>
             <div>
                 <label>Title:</label>
                 <input type="text" name="title" value={formData.title} onChange={handleChange} required/>
+                {errors.title && <span className="error">{errors.title}</span>}
             </div>
             <div>
                 <label>Description:</label>
@@ -81,5 +100,4 @@ const UploadMovieForm: React.FC = () => {
         </form>
     );
 };
-
 export default UploadMovieForm;
