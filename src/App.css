@@ -254,3 +254,42 @@
 .notification-close:hover {
     opacity: 0.8;
 }
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .auth {
+      margin-top: 1rem;
+    }
+  
+    .movie-item {
+      flex-direction: column;
+    }
+  
+    .movie-video iframe {
+      height: 200px;
+    }
+  
+    .movie-info {
+      padding-left: 0;
+      padding-top: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .auth .input-group {
+      margin-bottom: 0.5rem;
+    }
+  
+    .auth button {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+  
+    .movie-video iframe {
+      height: 150px;
+    }
+  }
