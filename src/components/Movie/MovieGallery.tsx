@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppState } from '../../types';
 import { fetchMovies } from '../../store/actions/movieActions';
@@ -7,16 +7,18 @@ import MovieItem from './MovieItem';
 const MovieGallery: React.FC = () => {
   const dispatch = useDispatch();
   const { movies, loading, error } = useSelector((state: AppState) => state.movie);
+  const initialFetchDone = useRef(false);
 
   const loadMovies = useCallback(() => {
-    dispatch(fetchMovies());
-  }, [dispatch]);
+    if (!loading && !initialFetchDone.current) {
+      dispatch(fetchMovies());
+      initialFetchDone.current = true;
+    }
+  }, [dispatch, loading]);
 
   useEffect(() => {
-    if (movies.length === 0) {
-      loadMovies();
-    }
-  }, [loadMovies, movies.length]);
+    loadMovies();
+  }, [loadMovies]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
