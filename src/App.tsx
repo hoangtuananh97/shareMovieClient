@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
+import {Provider} from 'react-redux';
+import Header from './components/Header';
+import MovieGallery from './components/Movie/MovieGallery';
+import UploadMovieForm from './components/Movie/UploadMovieForm';
+import VideoNotifications from './components/Notification/VideoNotifications';
+
+import Modal from './components/Modal/Modal';
 import './App.css';
+import store from "./store/store";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [showModal, setShowModal] = useState(false);
+    const handleOpenModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
+
+    return (
+        <Provider store={store}>
+            <div className="App">
+                <Header onOpenModal={handleOpenModal} />
+                <MovieGallery />
+                <Modal show={showModal} onClose={handleCloseModal}>
+                    <UploadMovieForm />
+                </Modal>
+                <VideoNotifications />
+            </div>
+        </Provider>
+    );
 }
 
 export default App;
