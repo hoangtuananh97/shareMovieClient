@@ -25,7 +25,7 @@ function App() {
                 <Header onOpenModal={handleOpenModal} />
                 <MovieGallery />
                 <Modal show={showModal} onClose={handleCloseModal}>
-                    <UploadMovieForm />
+                    <UploadMovieForm onClose={handleCloseModal} />
                 </Modal>
                 <VideoNotifications />
             </div>

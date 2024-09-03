@@ -5,7 +5,7 @@ import {uploadNewImageApi} from "../../api/imageApi";
 import {uploadNewMovies} from "../../store/actions/movieActions";
 import {useDispatch} from "react-redux";
 
-const UploadMovieForm: React.FC = () => {
+const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const [formData, setFormData] = useState<UploadNewMovie>({
         video_url: '',
         image_url: '',
@@ -22,7 +22,7 @@ const UploadMovieForm: React.FC = () => {
             ...formData,
             [name]: value,
         });
-        // Clear error when user starts typing
+
         if (errors[name]) {
             setErrors({...errors, [name]: ''});
         }
@@ -68,7 +68,9 @@ const UploadMovieForm: React.FC = () => {
             setErrors(newErrors);
         } else {
             dispatch(uploadNewMovies(formData));
+            onClose();
         }
+
     };
 
     return (
