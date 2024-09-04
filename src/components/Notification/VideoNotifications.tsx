@@ -45,7 +45,7 @@ const Notification: React.FC<Notifications> = ({ id, title, shared_by, onClose }
 };
 
 const VideoNotifications: React.FC = () => {
-    const { message } = useWebSocket('ws://localhost:8000/ws');
+    const { message } = useWebSocket(process.env.REACT_APP_WS_URL || 'ws://localhost:8000/ws');
     const [notifications, setNotifications] = useState<{ id: string, title: string, shared_by: string }[]>([]);
     // @ts-ignore
     const parsedUser = JSON.parse(localStorage.getItem('token'));

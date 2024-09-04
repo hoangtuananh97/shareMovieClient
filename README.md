@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Video Sharing Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+This is a React-based video sharing application that allows users to upload, view, and interact with shared videos. Key features include user authentication, real-time notifications for new video uploads, and a responsive design for various screen sizes.
 
-## Available Scripts
+## Prerequisites
+- Node.js (v14 or later)
+- npm (v6 or later)
+- A modern web browser
 
-In the project directory, you can run:
+## Installation & Configuration
+1. Clone the repository:
+   ```
+   git clone https://github.com/hoangtuananh97/shareMovieClient
+   ```
 
-### `npm start`
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Create a `.env` file in the root directory and add the following:
+   ```
+   REACT_APP_API_URL=http://localhost:8000
+   REACT_APP_WS_URL=ws://localhost:8000/ws
+   ```
+   Replace the URLs with your backend API and WebSocket endpoints.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running the Application
+1. Start the development server:
+   ```
+   npm start
+   ```
 
-### `npm test`
+2. Access the application in your web browser at `http://localhost:3000`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Run the test suite:
+   ```
+   npm test
+   ```
 
-### `npm run build`
+## Usage
+1. Register or log in to your account.
+2. Browse shared videos on the home page.
+3. Click "Share a Movie" to upload a new video.
+4. Interact with videos by liking or disliking them.
+5. Receive real-time notifications when other users share new videos.
+6. Reconnect websocket
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Docker Deployment (Optional)
+To deploy the application using Docker:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Options 1:
+1. Build the Docker image:
+   ```
+   docker build -t video-sharing-app .
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Run the container:
+   ```
+   docker run -p 3000:3000 video-sharing-app
+   ```
+### Options 2:
+Only run docker-compose:
+   ```
+   docker-compose up --build -d
+   ```
+The application will be accessible at `http://localhost:3000`.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Troubleshooting
+- If you encounter WebSocket connection issues, ensure your backend server is running and the WebSocket URL is correct in the `.env` file.
+- If videos fail to load, check your network connection and verify that the backend API is accessible.
+- For any test failures, ensure all dependencies are up to date by running `npm install`.
