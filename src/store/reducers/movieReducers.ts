@@ -25,7 +25,7 @@ export const movieReducer = (state = initialState, action: any): MovieState => {
     case UPLOAD_NEW_MOVIES:
       return { ...state, loading: true };
     case UPLOAD_NEW_MOVIES_SUCCESS:
-      return { ...state, loading: false, movies: [...state.movies, ...action.payload] };
+      return { ...state, loading: false, movies: [...[action.payload], ...state.movies] };
     case UPLOAD_NEW_MOVIES_FAILURE:
       return { ...state, loading: false, error: action.payload };
 

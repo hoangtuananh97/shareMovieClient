@@ -57,7 +57,7 @@ const VideoNotifications: React.FC = () => {
             const messageData = JSON.parse(message);
             const parsedMessageData: WebSocketMessage = messageData.data;
 
-            if (messageData.type === 'newVideo' && parsedMessageData.shared_by !== currentUser) {
+            if (messageData.type === 'newVideo' && currentUser && parsedMessageData.shared_by !== currentUser) {
                 setNotifications((prev) => [
                     ...prev,
                     {

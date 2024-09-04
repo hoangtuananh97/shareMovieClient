@@ -30,9 +30,7 @@ function* uploadNewMoviesSaga(action: any): Generator<any, void, any> {
     try {
         console.log("uploadNewMoviesSaga");
         const response = yield call(uploadNewMoviesApi, action.payload);
-        yield put(uploadNewMoviesSuccess(response.data));
-
-        yield put({type: FETCH_MOVIES});
+        yield put(uploadNewMoviesSuccess(response.data.Video));
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.error("Axios error:", error.response?.data || error.message);
