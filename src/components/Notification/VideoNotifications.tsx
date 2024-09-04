@@ -52,7 +52,6 @@ const VideoNotifications: React.FC = () => {
     const currentUser = parsedUser ? parsedUser.email : '';
 
     useEffect(() => {
-        console.log('VideoNotifications:', message);
         if (message && isJsonString(message)) {
             const messageData = JSON.parse(message);
             const parsedMessageData: WebSocketMessage = messageData.data;
