@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, logoutUser } from "../store/actions/userActions";
-import { AppState } from "../types";
+import { loginUser, logoutUser } from "../../store/actions/userActions";
+import { AppState } from "../../types";
 
 interface HeaderProps {
     onOpenModal: () => void;

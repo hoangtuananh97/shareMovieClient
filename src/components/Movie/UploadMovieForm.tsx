@@ -74,29 +74,59 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} data-testid="upload-movie">
             <div>
-                <label>Video URL:</label>
-                <input type="file" name="video_url" onChange={handleFileChangeVideo} required/>
+                <label htmlFor="video-input">Video URL:</label>
+                <input 
+                    id="video-input"
+                    type="file" 
+                    name="video_url" 
+                    onChange={handleFileChangeVideo} 
+                    required
+                />
                 {errors.video_url && <span className="error">{errors.video_url}</span>}
             </div>
             <div>
-                <label>Image URL:</label>
-                <input type="file" name="image_url" onChange={handleFileChangeImage} required/>
+                <label htmlFor="image-input">Image URL:</label>
+                <input 
+                    id="image-input"
+                    type="file" 
+                    name="image_url" 
+                    onChange={handleFileChangeImage} 
+                    required
+                />
                 {errors.image_url && <span className="error">{errors.image_url}</span>}
             </div>
             <div>
-                <label>Title:</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required/>
+                <label htmlFor="title-input">Title:</label>
+                <input 
+                    id="title-input"
+                    type="text" 
+                    name="title" 
+                    value={formData.title} 
+                    onChange={handleChange} 
+                    required
+                />
                 {errors.title && <span className="error">{errors.title}</span>}
             </div>
             <div>
-                <label>Description:</label>
-                <textarea name="description" value={formData.description || ''} onChange={handleChange}/>
+                <label htmlFor="description-input">Description:</label>
+                <textarea 
+                    id="description-input"
+                    name="description" 
+                    value={formData.description || ''} 
+                    onChange={handleChange}
+                />
             </div>
             <div>
-                <label>Tags:</label>
-                <input type="text" name="tags" value={formData.tags || ''} onChange={handleChange}/>
+                <label htmlFor="tags-input">Tags:</label>
+                <input 
+                    id="tags-input"
+                    type="text" 
+                    name="tags" 
+                    value={formData.tags || ''} 
+                    onChange={handleChange}
+                />
             </div>
             <button type="submit">Share Movie</button>
         </form>
