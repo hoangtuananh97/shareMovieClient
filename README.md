@@ -68,9 +68,33 @@ Only run docker-compose:
 The application will be accessible at `http://localhost:3000`.
 
 ## Troubleshooting
-- If you encounter WebSocket connection issues, ensure your backend server is running and the WebSocket URL is correct in the `.env` file.
-- If videos fail to load, check your network connection and verify that the backend API is accessible.
-- For any test failures, ensure all dependencies are up to date by running `npm install`.
+
+### WebSocket Connection Issues
+If you're experiencing problems with WebSocket connections:
+1. Ensure your backend server is running and accessible.
+2. Verify that the WebSocket URL in your `.env` file is correct.
+3. Check the browser console for any connection errors.
+4. If using a secure WebSocket (wss://), ensure your SSL certificates are valid.
+
+### Video Playback Problems
+If videos are not playing correctly:
+1. Confirm that the video URLs are valid and accessible.
+2. Check if the video format is supported by the browser you're using.
+3. Clear your browser cache and reload the page.
+4. Ensure your internet connection is stable.
+
+### Authentication Errors
+If you're having trouble logging in or accessing protected routes:
+1. Check if your login credentials are correct.
+2. Verify that the authentication token is being stored correctly in localStorage.
+3. Ensure the backend API is correctly validating and responding to authentication requests.
+
+### File Upload Issues
+If you're unable to upload videos or images:
+1. Check the file size and ensure it's within the allowed limit.
+2. Verify that the file format is supported.
+3. Ensure you have the necessary permissions to upload files.
+4. Check the network tab in your browser's developer tools for any error responses from the server.
 
 ## RUN Client and Server
 1. Goto folder parent
@@ -85,10 +109,10 @@ set -e
 
 # Build the Docker images and start the containers
 echo "Server: Building Docker images and starting containers..."
-docker-compose -f server/docker-compose.yml up --build -d
+docker-compose -f <Folder Server>/docker-compose.yml up --build -d
 
 echo "Client: Building Docker images and starting containers..."
-docker-compose -f client-ytb/docker-compose.yml up --build -d
+docker-compose -f <Folder Client>/docker-compose.yml up --build -d
 
 # Wait for a few seconds to ensure that services are up and running
 echo "Waiting for services to start..."
