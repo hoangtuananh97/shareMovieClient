@@ -71,3 +71,29 @@ The application will be accessible at `http://localhost:3000`.
 - If you encounter WebSocket connection issues, ensure your backend server is running and the WebSocket URL is correct in the `.env` file.
 - If videos fail to load, check your network connection and verify that the backend API is accessible.
 - For any test failures, ensure all dependencies are up to date by running `npm install`.
+
+## RUN Client and Server
+1. Goto folder parent
+2. Create `sh file`. Ex: `run_server.sh`
+3. Add permission for `sh file`: ` chmod +x run_server.sh`
+4. Add content to file:
+```
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Build the Docker images and start the containers
+echo "Server: Building Docker images and starting containers..."
+docker-compose -f server/docker-compose.yml up --build -d
+
+echo "Client: Building Docker images and starting containers..."
+docker-compose -f client-ytb/docker-compose.yml up --build -d
+
+# Wait for a few seconds to ensure that services are up and running
+echo "Waiting for services to start..."
+sleep 5
+
+echo "RUNNING..."
+```
+5. Run `./run_server.sh`
