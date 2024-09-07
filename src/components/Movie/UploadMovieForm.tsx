@@ -15,6 +15,8 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     });
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const dispatch = useDispatch();
+    const [isVideoUploading, setIsVideoUploading] = useState(false);
+    const [isImageUploading, setIsImageUploading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target;
@@ -32,12 +34,15 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         const {files} = e.target;
         if (files && files.length > 0) {
             const file = files[0];
+            setIsImageUploading(true);
             try {
                 const response = await uploadNewImageApi(file);
                 setFormData({...formData, image_url: response.data.url});
             } catch (error) {
                 console.error('Error uploading image', error);
                 setErrors({...errors, image_url: 'Failed to upload image'});
+            } finally {
+                setIsImageUploading(false);
             }
         }
     };
@@ -46,12 +51,15 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         const {files} = e.target;
         if (files && files.length > 0) {
             const file = files[0];
+            setIsVideoUploading(true);
             try {
                 const response = await uploadNewVideoApi(file);
                 setFormData({...formData, video_url: response.data.url});
             } catch (error) {
                 console.error('Error uploading video', error);
                 setErrors({...errors, video_url: 'Failed to upload video'});
+            } finally {
+                setIsVideoUploading(false);
             }
         }
     };
@@ -83,7 +91,9 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     name="video_url" 
                     onChange={handleFileChangeVideo} 
                     required
+                    disabled={isVideoUploading}
                 />
+                {isVideoUploading && <span className="red">Uploading video...</span>}
                 {errors.video_url && <span className="error">{errors.video_url}</span>}
             </div>
             <div>
@@ -94,7 +104,9 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                     name="image_url" 
                     onChange={handleFileChangeImage} 
                     required
+                    disabled={isImageUploading}
                 />
+                {isImageUploading && <span className="red">Uploading image...</span>}
                 {errors.image_url && <span className="error">{errors.image_url}</span>}
             </div>
             <div>

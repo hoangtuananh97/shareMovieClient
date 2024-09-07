@@ -254,6 +254,9 @@
 .notification-close:hover {
     opacity: 0.8;
 }
+.red {
+    color: #ff4d4f;
+}
 /* Responsive styles */
 @media screen and (max-width: 768px) {
     .header {
