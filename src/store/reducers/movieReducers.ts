@@ -25,6 +25,11 @@ export const movieReducer = (state = initialState, action: any): MovieState => {
     case UPLOAD_NEW_MOVIES:
       return { ...state, loading: true };
     case UPLOAD_NEW_MOVIES_SUCCESS:
+      // @ts-ignore
+      const parsedUser = JSON.parse(localStorage.getItem('token'));
+      const emailUser = parsedUser ? parsedUser.email : action.payload['shared_by'];
+      action.payload['shared_by'] = emailUser
+
       return { ...state, loading: false, movies: [...[action.payload], ...state.movies] };
     case UPLOAD_NEW_MOVIES_FAILURE:
       return { ...state, loading: false, error: action.payload };
