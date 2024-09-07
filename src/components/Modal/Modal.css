@@ -13,10 +13,10 @@
 
 .modal-content {
     background: #fff;
-    padding: 30px;
+    padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
+    max-width: 600px;
     width: 100%;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
@@ -115,7 +115,6 @@ button[type="submit"]:hover {
 
 .modal-content form div {
     display: flex;
-    flex-direction: column;
 }
 
 .modal-content form label {
@@ -145,7 +144,7 @@ button[type="submit"]:hover {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    align-self: flex-start;
+    align-self: auto;
 }
 
 .modal-content form button[type="submit"]:hover {

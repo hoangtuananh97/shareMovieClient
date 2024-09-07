@@ -84,7 +84,7 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     return (
         <form onSubmit={handleSubmit} data-testid="upload-movie">
             <div>
-                <label htmlFor="video-input">Video URL:</label>
+                <label htmlFor="video-input">Video URL<span className='red'>*</span>:</label>
                 <input 
                     id="video-input"
                     type="file" 
@@ -97,7 +97,7 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 {errors.video_url && <span className="error">{errors.video_url}</span>}
             </div>
             <div>
-                <label htmlFor="image-input">Image URL:</label>
+                <label htmlFor="image-input">Image URL<span className='red'>*</span>:</label>
                 <input 
                     id="image-input"
                     type="file" 
@@ -110,7 +110,7 @@ const UploadMovieForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 {errors.image_url && <span className="error">{errors.image_url}</span>}
             </div>
             <div>
-                <label htmlFor="title-input">Title:</label>
+                <label htmlFor="title-input">Title<span className='red'>*</span>:</label>
                 <input 
                     id="title-input"
                     type="text" 

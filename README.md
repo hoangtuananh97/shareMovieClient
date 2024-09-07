@@ -42,10 +42,15 @@ This is a React-based video sharing application that allows users to upload, vie
 ## Usage
 1. Register or log in to your account.
 2. Browse shared videos on the home page.
-3. Click "Share a Movie" to upload a new video.
+3. Click "Share a Movie" to upload a new video. Let's upload and input:
+   1. Upload video <Required>
+   2. Upload image <Required>
+   3. Input title <Required>
+   4. Input Description <Option>
+   5. Input tag <Option>
 4. Interact with videos by liking or disliking them.
 5. Receive real-time notifications when other users share new videos.
-6. Reconnect websocket
+6. Reconnect websocket when restart server.
 
 ## Docker Deployment (Optional)
 To deploy the application using Docker:
